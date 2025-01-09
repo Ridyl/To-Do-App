@@ -1,1 +1,11 @@
 /* Add your custom css here */
+body {
+    background-color: #dadada;
+    color: #1f2023;
+  }
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #1f2023;
+      color: #dadada;
+    }
+  }
