@@ -1,18 +1,19 @@
 import { useState } from 'react'
 import './App.css'
 
-// Item framework - default low pri in the case of no change
+// Item framework - default low pri in the case of no change - edit false
 const initialItem = {
   job: '',
   desc: '',
-  pri: '',
+  pri: '1',
   edit: false,
 };
 
 function App() {
+
   const [todoList, addTodoList] = useState([]);
   const [listItem, setListItem] = useState(initialItem);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -23,11 +24,29 @@ function App() {
   }
 
   function handleAdd() {
+    // Ensure input fields are filled
+    if (!listItem.job || !listItem.desc) {
+      return (
+        alert("Please enter values in all fields.")
+      );
+    }
+
     // Push to array for later access and rendering
-    addTodoList(prevList => [...prevList, listItem]);
+    addTodoList(prevList => 
+      [...prevList, listItem]
+    );
     // Reset listItem to initialItem to accept more
     setListItem(initialItem);
   }
+
+  const handleDelete = (index) => {
+    const list = [...todoList];
+
+    list.splice(index, 1);
+    addTodoList(list);
+  }
+
+
 
   // MOVE ALL THIS TO SEPARATE COMPONENT FILES
   return (
@@ -63,14 +82,14 @@ function App() {
           <select
             value={listItem.pri}
             name="pri"
-            onChange={(e) => handleChange(e)}
+            onChange={handleChange}
           >
             <option value={1}>Low</option>
 
             <option value={2}>Med</option>
 
             <option value={3}>High</option>
-            
+
           </select>
           <button type="button" onClick={handleAdd}>
             Add to List
@@ -84,13 +103,15 @@ function App() {
         {/* will create card component that dynamically updates based off of priority selected 
         ul placeholder for now to get code working*/}
         <ul className="test-list">
-          {todoList.map((item, i) => {
-            return (
-              <li key={i}>
-                <h5>{item.job}</h5>
-                <p>{item.desc}</p>
-              </li>
-            );
+          {
+            todoList.map((item, i) => {
+              return (
+                <li key={i}>
+                  <h5>{item.job}</h5>
+                  <p>{item.desc}{item.pri}</p>
+                  <button onClick={() => handleDelete(i)} value={i}>Delete</button>
+                </li>
+              );
           })}
         </ul>
       </div>
