@@ -18,7 +18,7 @@ function titleFormatter(title) {
 }
 
 // very simple formatter to ensure general paragraph format is in the card,
-// Could implement API's to do this while also fixing structure and other issues
+// Could implement API's to do this while also fixing structure, spelling, and other issues
 // but this will suffice for this project.
 function descFormatter(desc) {
   let nextCap = false
@@ -42,29 +42,27 @@ function descFormatter(desc) {
 }
 function TodoItem({ item, index, handleDelete, handleCheck }) {
   return (
-    <div className="card">
-      <div key={index} className='card-body container'>
-        <div className="card-title row">
-          <h5>{titleFormatter(item.job)}</h5>
-        </div>
-        <div className="card-text row">
-          <p>{descFormatter(item.desc)}</p>
-        </div>
-        <div className="card-text row-col-3">
-          <button 
-            className='btn btn-success' 
-            name='complete' type='checkbox' 
-            onChange={handleCheck} 
-            value={index}>
-            Completed!
-          </button>
-          <button 
-            onClick={() => handleDelete(index)} 
-            value={index} 
-            className='btn btn-danger'>
-            Delete
-          </button>
-        </div>
+    <div key={index} id='todo-cards' className='card'>
+      <div className="card-header">
+        <h5>{titleFormatter(item.job)}</h5>
+      </div>
+      <div className="card-text">
+        <p>{descFormatter(item.desc)}</p>
+      </div>
+      <div className="card-text row-col-2">
+        <button 
+          className='btn btn-success' 
+          name='complete' type='checkbox' 
+          onChange={handleCheck} 
+          value={index}>
+          Completed!
+        </button>
+        <button 
+          onClick={() => handleDelete(index)} 
+          value={index} 
+          className='btn btn-danger'>
+          Delete
+        </button>
       </div>
     </div>
   );

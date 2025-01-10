@@ -9,7 +9,15 @@ body {
     }
   }
 
+  #form-card {
+    padding: 7px 5px 7px 5px;
+  }
+
   #description {
     text-wrap: wrap;
     height: 240px;
+  }
+
+  #todo-cards {
+    padding: 5px;
   }
