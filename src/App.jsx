@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import Header from './components/Header';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 
@@ -44,17 +45,9 @@ function App() {
     setComplete(prevList => [...prevList, checked]);
   }
 
-
-
-  // MOVE ALL THIS TO SEPARATE COMPONENT FILES
   return (
     <>
-      {/* Header grouping */}
-      <div className="header-group">
-        <h1 className="header">Very Simple Todo App</h1>
-        <h4 className="sub-header">Track All of the Things!</h4>
-      </div>
-
+      <Header />
       <TodoForm
         listItem={listItem}
         handleChange={handleChange}
