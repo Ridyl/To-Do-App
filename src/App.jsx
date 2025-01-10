@@ -46,20 +46,28 @@ function App() {
   }
 
   return (
-    <>
+    <div className='container'>
       <Header />
-      <TodoForm
-        listItem={listItem}
-        handleChange={handleChange}
-        handleAdd={handleAdd}
-      />
-      <TodoList
-        todos={todoList}
-        complete={complete}
-        handleDelete={handleDelete}
-        handleCheck={handleCheck}
-      />
-    </>
+      <div className="row">
+        <div className="col">
+          <TodoForm
+            listItem={listItem}
+            handleChange={handleChange}
+            handleAdd={handleAdd}
+          />
+        </div>
+        <div className="col">
+          <div className="accordion">
+            <TodoList
+              todos={todoList}
+              complete={complete}
+              handleDelete={handleDelete}
+              handleCheck={handleCheck}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -1,4 +1,3 @@
-/* Add your custom css here */
 body {
     background-color: #dadada;
     color: #1f2023;
@@ -8,4 +7,9 @@ body {
       background-color: #1f2023;
       color: #dadada;
     }
+  }
+
+  #description {
+    text-wrap: wrap;
+    height: 240px;
   }

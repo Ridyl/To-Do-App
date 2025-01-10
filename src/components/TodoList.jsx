@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function TodoList({ todos, complete, handleDelete, handleCheck }) {
   return (
     <div className="task-area">
-      <ul className="test-list">
+      <div className="test-list">
         {todos.map((item, i) => (
           <TodoItem
             key={i}
@@ -14,17 +14,17 @@ function TodoList({ todos, complete, handleDelete, handleCheck }) {
             handleCheck={handleCheck}
           />
         ))}
-      </ul>
+      </div>
 
-      <h1>Complete!</h1>
-      <ul className="complete-test">
+      <h4>Complete!</h4>
+      <div className="card">
         {complete.map((item, i) => (
-          <li key={i}>
+          <div key={i}>
             <h5>{item.job}</h5>
             <p>{item.desc}</p>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
