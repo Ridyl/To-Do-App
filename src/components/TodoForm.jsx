@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function TodoForm({ listItem, handleChange, handleAdd, handleTCounter, handleDCounter, tCount, dCount }) {
+function TodoForm({ listItem, handleChange, handleAdd, handleTitleCounter, handleDescCounter, titleCount, descCount }) {
   return (
       <div className="card">
         <h5 className="card-header">
@@ -12,13 +12,15 @@ function TodoForm({ listItem, handleChange, handleAdd, handleTCounter, handleDCo
               <input
                 name="job"
                 value={listItem.job}
-                onChange={handleChange}
+                onChange={(e) => {
+                  handleChange(e);
+                  handleTitleCounter(e);
+                }}
                 maxLength={48}
-                onInput={handleTCounter}
                 className='form-control'
                 id='job'
               />
-              <p className='badge text-bg-secondary'>{tCount} / 48</p>
+              <p className='badge text-bg-secondary'>{titleCount} / 48</p>
               <label htmlFor="job">Title:</label>
             </div>
           </div>
@@ -27,13 +29,15 @@ function TodoForm({ listItem, handleChange, handleAdd, handleTCounter, handleDCo
               <textarea
                 name="desc"
                 value={listItem.desc}
-                onChange={handleChange}
+                onChange={(e) => {
+                  handleChange(e);
+                  handleDescCounter(e);
+                }}
                 maxLength={512}
-                id='description'
-                onInput={handleDCounter}
                 className='form-control'
+                id='description'
               />
-              <p className='badge text-bg-secondary'>{dCount} / 512</p>
+              <p className='badge text-bg-secondary'>{descCount} / 512</p>
               <label htmlFor="desc">Description:</label>
             </div>
           </div>
@@ -75,7 +79,11 @@ TodoForm.propTypes = {
   }),
   handleChange: PropTypes.func.isRequired,
   handleAdd: PropTypes.func.isRequired,
-  handleCounter: PropTypes.func.isRequired,
+  handleTitleCounter: PropTypes.func.isRequired,
+  handleDescCounter: PropTypes.func.isRequired,
+
+  titleCount: PropTypes.number,
+  descCount: PropTypes.number,
 }
 
 export default TodoForm;

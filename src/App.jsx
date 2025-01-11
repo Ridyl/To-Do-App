@@ -17,8 +17,8 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [listItem, setListItem] = useState(initialItem);
   const [complete, setComplete] = useState([]);
-  const [wordTCount, setWordTCount] = useState(0);
-  const [wordDCount, setWordDCount] = useState(0);
+  const [titleCount, setTitleCount] = useState(0);
+  const [descCount, setDescCount] = useState(0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,15 +47,16 @@ function App() {
     setComplete(prevList => [...prevList, checked]);
   }
 
-  const handleTCounter = (e) => {
+  function handleTitleCounter(e) {
     const inputLength = e.target.value.length;
 
-    setWordTCount(inputLength);
+    setTitleCount(inputLength);
   }
-  const handleDCounter = (e) => {
+
+  function handleDescCounter(e) {
     const inputLength = e.target.value.length;
 
-    setWordDCount(inputLength);
+    setDescCount(inputLength);
   }
 
   return (
@@ -67,8 +68,10 @@ function App() {
             listItem={listItem}
             handleChange={handleChange}
             handleAdd={handleAdd}
-            handleCounter={handleTCounter}
-            tCount={wordTCount}
+            handleTitleCounter={handleTitleCounter}
+            titleCount={titleCount}
+            handleDescCounter={handleDescCounter}
+            descCount={descCount}
           />
         </div>
         <div className="col">
@@ -78,8 +81,6 @@ function App() {
               complete={complete}
               handleDelete={handleDelete}
               handleCheck={handleCheck}
-              handleCounter={handleDCounter}
-              dCount={wordDCount}
             />
           </div>
         </div>

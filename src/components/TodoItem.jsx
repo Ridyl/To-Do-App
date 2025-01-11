@@ -21,7 +21,9 @@ function titleFormatter(title) {
 // Could implement API's to do this while also fixing structure, spelling, and other issues
 // but this will suffice for this project.
 function descFormatter(desc) {
+  const punc = ['.', '!', '?'];
   let nextCap = false
+  
   return desc
     .split(' ')
     .map((word, index) => {
@@ -32,7 +34,7 @@ function descFormatter(desc) {
       }
 
       // if the last char in word is .
-      if(word.substr(word.length - 1) === '.') {
+      if(punc.includes(word.substr(word.length - 1))) {
         nextCap = true;
       }
       // returns any other word all lower case
