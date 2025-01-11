@@ -42,9 +42,21 @@ function descFormatter(desc) {
     })
     .join(' ');
 }
+
+
+function prioritySort(pri) {
+  if (pri === '1') {
+    return 'card text-bg-secondary mb-3';
+  } else if (pri === '2') {
+    return 'card text-bg-warning mb-3';
+  } else if (pri === '3') {
+    return 'card text-bg-danger mb-3';
+  } 
+}
+
 function TodoItem({ item, index, handleDelete, handleCheck }) {
   return (
-    <div key={index} id='todo-cards' className='card'>
+    <div key={index} id='todo-cards' className={prioritySort(item.pri)}>
       <div className="card-header">
         <h5>{titleFormatter(item.job)}</h5>
       </div>

@@ -32,6 +32,8 @@ function App() {
     }
     setTodoList(prevList => [...prevList, listItem]);
     setListItem(initialItem);
+    setTitleCount(0);
+    setDescCount(0);
   }
 
   const handleDelete = (index) => {
@@ -75,7 +77,7 @@ function App() {
           />
         </div>
         <div className="col">
-          <div className="accordion">
+          <div className="card-group">
             <TodoList
               todos={todoList}
               complete={complete}
