@@ -1,81 +1,80 @@
 import PropTypes from 'prop-types';
+import TextFormatter from './Formatters';
 
 // formats title to start each word with capital letter
-function titleFormatter(title) {
-  const noCap = ['a', 'an', 'the', 'and', 'or', 'but', 'nor'];
+// function titleFormatter(title) {
+//   const noCap = ['a', 'an', 'the', 'and', 'or', 'but', 'nor'];
 
-  return title
-    .split(' ')
-    .map((word) => {
-    // if the word matches any in [noCap] and it isn't the first or last word in the array
-      if(noCap.includes(word.toLowerCase()) || word.length < 3 && !word.at(0) || !word.at(-1)) {
-        return word.toLowerCase();
-      }
-    // return word with first char Uppercase
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    })
-    .join(' ');
-}
+//   return title
+//     .split(' ')
+//     .map((word) => {
+//       // if the word matches any in [noCap] and it isn't the first or last word in the array
+//       if(noCap.includes(word.toLowerCase()) || word.length < 3 && !word.at(0) || !word.at(-1)) {
+//         return word.toLowerCase();
+//       }
+//       // return word with first char Uppercase
+//       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+//     })
+//     .join(' ');
+// }
 
-// very simple formatter to ensure general paragraph format is in the card,
-// Could implement API's to do this while also fixing structure, spelling, and other issues
-// but this will suffice for this project.
-function descFormatter(desc) {
-  const punc = ['.', '!', '?'];
-  let nextCap = false
+// // very simple formatter to ensure general paragraph format is in the card,
+// // Could implement API's to do this while also fixing structure, spelling, and other issues
+// // but this will suffice for this project.
+// function descFormatter(desc) {
+//   const punc = ['.', '!', '?'];
+//   let nextCap = false
   
-  return desc
-    .split(' ')
-    .map((word, index) => {
-      // if word is first in desc or nextCap is true
-      if(index == 0 || nextCap == true) {
-        nextCap = false;
-        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-      }
-
-      // if the last char in word is .
-      if(punc.includes(word.substr(word.length - 1))) {
-        nextCap = true;
-      }
-      // returns any other word all lower case
-      return word.toLowerCase();
-    })
-    .join(' ');
-}
+//   return desc
+//     .split(' ')
+//     .map((word, index) => {
+//       // if word is first in desc or nextCap is true
+//       if(index == 0 || nextCap == true) {
+//         nextCap = false;
+//         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+//       }
+//       // if the last char in word is .
+//       if(punc.includes(word.substr(word.length - 1))) {
+//         nextCap = true;
+//       }
+//       // returns any other word all lower case
+//       return word.toLowerCase();
+//     })
+//     .join(' ');
+// }
 
 
 function prioritySort(pri) {
   if (pri === '1') {
-    return 'card text-bg-secondary mb-3';
+    return 'card text-bg-light mb-3';
   } else if (pri === '2') {
-    return 'card text-bg-warning mb-3';
+    return 'card text-bg-secondary mb-3';
   } else if (pri === '3') {
-    return 'card text-bg-danger mb-3';
+    return 'card text-bg-warning mb-3';
   } 
 }
 
-function TodoItem({ item, index, handleDelete, handleCheck }) {
+function TodoItem({ item, index, handleDelete, handleComplete }) {
   return (
     <div key={index} id='todo-cards' className={prioritySort(item.pri)}>
-      <div className="card-header">
-        <h5>{titleFormatter(item.job)}</h5>
-      </div>
-      <div className="card-text">
-        <p>{descFormatter(item.desc)}</p>
-      </div>
+      <TextFormatter title={item.job} desc={item.desc}/>
       <div className="card-text row-col-2">
         <button 
           className='btn btn-success' 
-          name='complete' type='checkbox' 
-          onChange={handleCheck} 
+          name='complete' 
+          type='button' 
+          onClick={handleComplete} 
           value={index}>
           Completed!
         </button>
         <button 
           onClick={() => handleDelete(index)} 
           value={index} 
-          className='btn btn-danger'>
+          className='btn btn-danger ms-2'>
           Delete
+        </button>
+        <button className='btn btn-secondary float-end'>
+          Edit
         </button>
       </div>
     </div>
@@ -92,7 +91,7 @@ TodoItem.propTypes = {
   }).isRequired,
   index: PropTypes.number.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  handleCheck: PropTypes.func.isRequired,
+  handleComplete: PropTypes.func.isRequired,
 };
 
 export default TodoItem;

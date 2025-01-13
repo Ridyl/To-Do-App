@@ -36,17 +36,17 @@ function App() {
     setDescCount(0);
   }
 
+  const handleComplete = (index) => {
+    const updatedList = [...todoList];
+    const complete = updatedList.splice(index, 1)[0];
+    setTodoList(updatedList);
+    setComplete(prevList => [...prevList, complete]);
+  }
+
   const handleDelete = (index) => {
     const updatedList = [...todoList];
     updatedList.splice(index, 1);
     setTodoList(updatedList);
-  }
-
-  const handleCheck = (index) => {
-    const updatedList = [...todoList];
-    const checked = updatedList.splice(index, 1)[0];
-    setTodoList(updatedList);
-    setComplete(prevList => [...prevList, checked]);
   }
 
   function handleTitleCounter(e) {
@@ -82,7 +82,7 @@ function App() {
               todos={todoList}
               complete={complete}
               handleDelete={handleDelete}
-              handleCheck={handleCheck}
+              handleComplete={handleComplete}
             />
           </div>
         </div>

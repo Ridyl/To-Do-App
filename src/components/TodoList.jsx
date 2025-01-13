@@ -1,7 +1,8 @@
 import TodoItem from './TodoItem';
+import CompleteItem from './CompleteItem';
 import PropTypes from 'prop-types';
 
-function TodoList({ todos, complete, handleDelete, handleCheck }) {
+function TodoList({ todos, complete, handleDelete, handleComplete }) {
   return (
     <div className="task-area">
       <div className="test-list">
@@ -11,19 +12,22 @@ function TodoList({ todos, complete, handleDelete, handleCheck }) {
             item={item}
             index={i}
             handleDelete={handleDelete}
-            handleCheck={handleCheck}
+            handleComplete={handleComplete}
           />
         ))}
       </div>
 
       <h4>Complete!</h4>
-      <div className="card">
-        {complete.map((item, i) => (
-          <div key={i}>
-            <h5>{item.job}</h5>
-            <p>{item.desc}</p>
-          </div>
-        ))}
+      <div className="card text-bg-success">
+        <div className="card">
+          {complete.map((item, i) => (
+            <CompleteItem
+              key={i}
+              item={item}
+              index={i}
+            />
+            ))}
+        </div>
       </div>
     </div>
   );
@@ -48,7 +52,7 @@ TodoList.propTypes = {
     }).isRequired
   ).isRequired,
   handleDelete: PropTypes.func.isRequired,
-  handleCheck: PropTypes.func.isRequired,
+  handleComplete: PropTypes.func.isRequired,
 }
 
 export default TodoList;
