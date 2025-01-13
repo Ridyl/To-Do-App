@@ -4,7 +4,6 @@ function TextFormatter({title, desc}) {
     // formats title to start each word with capital letter
     const formatTitle = ((title) => {
         const noCap = ['a', 'an', 'the', 'and', 'or', 'but', 'nor'];
-    
         return title
         .split(' ')
         .map((word) => {
@@ -24,7 +23,6 @@ function TextFormatter({title, desc}) {
     const formatDesc = ((desc) => {
         const punc = ['.', '!', '?'];
         let nextCap = false
-        
         return desc
         .split(' ')
         .map((word, index) => {
@@ -44,14 +42,14 @@ function TextFormatter({title, desc}) {
     });
 
     return (
-        <>
+        <div>
             <div className="card-header">
                 <h5>{formatTitle(title)}</h5>
             </div>
-            <div className="card-text">
-                <p>{formatDesc(desc)}</p>
+            <div className="card-body">
+                <p className='card-text'>{formatDesc(desc)}</p>
             </div>
-        </>
+        </div>
     );
 }
 

@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
+import Edit from './components/OffCanvas';
 
 // Item framework - default low pri in the case of no change - edit false
 const initialItem = {
@@ -19,6 +20,7 @@ function App() {
   const [complete, setComplete] = useState([]);
   const [titleCount, setTitleCount] = useState(0);
   const [descCount, setDescCount] = useState(0);
+  const [showEdit, setShowEdit] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,10 +45,14 @@ function App() {
     setComplete(prevList => [...prevList, complete]);
   }
 
-  const handleDelete = (index) => {
+  function handleDelete(index) {
     const updatedList = [...todoList];
     updatedList.splice(index, 1);
     setTodoList(updatedList);
+  }
+
+  function handleEdit() {
+    setShowEdit(true);
   }
 
   function handleTitleCounter(e) {
@@ -77,15 +83,15 @@ function App() {
           />
         </div>
         <div className="col">
-          <div className="card-group">
-            <TodoList
-              todos={todoList}
-              complete={complete}
-              handleDelete={handleDelete}
-              handleComplete={handleComplete}
-            />
-          </div>
+          <TodoList
+            todos={todoList}
+            complete={complete}
+            handleDelete={handleDelete}
+            handleComplete={handleComplete}
+            handleEdit={handleEdit}
+          />
         </div>
+        {showEdit && <Edit />}
       </div>
     </div>
   );

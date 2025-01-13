@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import TextFormatter from "./Formatters";
+import RandomQuote from "./RandomQuotes";
 
-function CompleteItem({ item, index }) {
+function CompleteItem({ item }) {
     return (
-      <div key={index} id='todo-cards' className={item.pri}>
-        <TextFormatter title={item.job} desc={item.desc}/>
-      </div>
+        <div className="card">
+            <TextFormatter title={item.job} desc={item.desc}/>
+            <RandomQuote/>
+        </div>
     );
   }
 

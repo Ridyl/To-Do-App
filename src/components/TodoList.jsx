@@ -4,32 +4,25 @@ import PropTypes from 'prop-types';
 
 function TodoList({ todos, complete, handleDelete, handleComplete }) {
   return (
-    <div className="task-area">
-      <div className="test-list">
-        {todos.map((item, i) => (
-          <TodoItem
-            key={i}
-            item={item}
-            index={i}
-            handleDelete={handleDelete}
-            handleComplete={handleComplete}
-          />
-        ))}
-      </div>
+    <>
+      {todos.map((item, i) => (
+        <TodoItem
+          key={i}
+          item={item}
+          index={i}
+          handleDelete={handleDelete}
+          handleComplete={handleComplete}
+        />
+      ))}
 
-      <h4>Complete!</h4>
-      <div className="card text-bg-success">
-        <div className="card">
-          {complete.map((item, i) => (
-            <CompleteItem
-              key={i}
-              item={item}
-              index={i}
-            />
-            ))}
-        </div>
-      </div>
-    </div>
+      {complete.map((item, i) => (
+        <CompleteItem
+          key={i}
+          item={item}
+          index={i}
+        />
+      ))}
+    </>
   );
 }
 
