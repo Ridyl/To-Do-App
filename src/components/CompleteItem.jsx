@@ -1,12 +1,16 @@
 import PropTypes from "prop-types";
 import TextFormatter from "./Formatters";
 import RandomQuote from "./RandomQuotes";
+import { useMemo } from "react";
 
 function CompleteItem({ item }) {
+  // Stores the quote as a variable so it isn't constantly updated on user input
+  const quote = useMemo(() => <RandomQuote/>, []);
+  
     return (
         <div className="card">
             <TextFormatter title={item.job} desc={item.desc}/>
-            <RandomQuote/>
+            {quote}
         </div>
     );
   }

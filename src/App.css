@@ -1,23 +1,23 @@
 body {
-    background-color: #dadada;
-    color: #1f2023;
-  }
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: #1f2023;
-      color: #dadada;
-    }
-  }
+	background-color: #dadada;
+	color: #1f2023;
+}
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: #1f2023;
+		color: #dadada;
+	}
+}
 
-  #form-card {
-    padding: 7px 5px 7px 5px;
-  }
+#form-card {
+	padding: 7px 5px 7px 5px;
+}
 
-  #description {
-    text-wrap: wrap;
-    height: 240px;
-  }
+#description {
+	text-wrap: wrap;
+	height: 240px;
+}
 
-  #todo-cards {
-    padding: 5px;
-  }
+#todo-cards {
+	padding: 5px;
+}
