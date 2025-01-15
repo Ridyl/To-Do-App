@@ -7,20 +7,30 @@ function TodoItem({ item, index, handleDelete, handleComplete, handleEdit }) {
 			{item.edit ? (
 				<>
 					<div className='card-header'>
-						<input
-							type='text'
-							value={item.job}
-							onChange={(e) => handleEdit(index, 'job', e.target.value)}
-						/>
+						<div className='form-floating'>
+							<input
+								id='job'
+								type='text'
+								className='form-control'
+								value={item.job}
+								onChange={(e) => handleEdit(index, 'job', e.target.value)}
+							/>
+							<label htmlFor='job'>Title:</label>
+						</div>
 					</div>
 					<div className='card-body'>
 						<div className='card-text'>
-							<textarea
-								value={item.desc}
-								onChange={(e) => handleEdit(index, 'desc', e.target.value)}
-							/>
+							<div className='form-floating mb-3'>
+								<textarea
+									className='form-control'
+									id='description'
+									value={item.desc}
+									onChange={(e) => handleEdit(index, 'desc', e.target.value)}
+								/>
+							</div>
 						</div>
 						<select
+							className='form-control'
 							value={item.pri}
 							onChange={(e) => handleEdit(index, 'pri', e.target.value)}
 						>
@@ -30,10 +40,16 @@ function TodoItem({ item, index, handleDelete, handleComplete, handleEdit }) {
 						</select>
 					</div>
 					<div className='card-footer'>
-						<button onClick={() => handleEdit(index, 'edit', false)}>
+						<button
+							className='btn btn-primary ms-2 float-end'
+							onClick={() => handleEdit(index, 'edit', false)}
+						>
 							Save
 						</button>
-						<button onClick={() => handleEdit(index, 'edit', false)}>
+						<button
+							className='btn btn-danger float-end'
+							onClick={() => handleEdit(index, 'edit', false)}
+						>
 							Cancel
 						</button>
 					</div>
