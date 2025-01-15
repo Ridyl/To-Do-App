@@ -1,7 +1,14 @@
 import PropTypes from 'prop-types';
 import TextFormatter from './Formatters';
 
-function TodoItem({ item, index, handleDelete, handleComplete, handleEdit }) {
+function TodoItem({
+	item,
+	index,
+	handleDelete,
+	handleComplete,
+	handleEdit,
+	handleCancel,
+}) {
 	return (
 		<div className='card'>
 			{item.edit ? (
@@ -27,6 +34,7 @@ function TodoItem({ item, index, handleDelete, handleComplete, handleEdit }) {
 									value={item.desc}
 									onChange={(e) => handleEdit(index, 'desc', e.target.value)}
 								/>
+								<label htmlFor='description'>Description:</label>
 							</div>
 						</div>
 						<select
@@ -41,14 +49,14 @@ function TodoItem({ item, index, handleDelete, handleComplete, handleEdit }) {
 					</div>
 					<div className='card-footer'>
 						<button
-							className='btn btn-primary ms-2 float-end'
+							className='btn btn-primary'
 							onClick={() => handleEdit(index, 'edit', false)}
 						>
 							Save
 						</button>
 						<button
 							className='btn btn-danger float-end'
-							onClick={() => handleEdit(index, 'edit', false)}
+							onClick={() => handleCancel(index, 'edit', false)}
 						>
 							Cancel
 						</button>
@@ -100,6 +108,7 @@ TodoItem.propTypes = {
 	handleDelete: PropTypes.func.isRequired,
 	handleComplete: PropTypes.func.isRequired,
 	handleEdit: PropTypes.func,
+	handleCancel: PropTypes.func,
 };
 
 export default TodoItem;

@@ -63,7 +63,7 @@ function App() {
 	const handleCancel = (index) => {
 		setTodoList((prevList) => {
 			const updatedList = [...prevList];
-			updatedList[index] = { ...savedEdit, edit: true };
+			updatedList[index] = { ...savedEdit, edit: false };
 			return updatedList;
 		});
 	};
