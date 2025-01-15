@@ -8,11 +8,13 @@ function TodoItem({
 	handleComplete,
 	handleEdit,
 	handleCancel,
+	handleShow,
 }) {
 	return (
-		<div className='card'>
+		<div className='card' data-testid='todo-item'>
+			{/* If edit key = true */}
 			{item.edit ? (
-				<>
+				<div data-testid='todo-item'>
 					<div className='card-header'>
 						<div className='form-floating'>
 							<input
@@ -33,6 +35,7 @@ function TodoItem({
 									id='description'
 									value={item.desc}
 									onChange={(e) => handleEdit(index, 'desc', e.target.value)}
+									data-testid='update-todo-text'
 								/>
 								<label htmlFor='description'>Description:</label>
 							</div>
@@ -42,15 +45,16 @@ function TodoItem({
 							value={item.pri}
 							onChange={(e) => handleEdit(index, 'pri', e.target.value)}
 						>
-							<option value='1'>Low</option>
-							<option value='2'>Med</option>
-							<option value='3'>High</option>
+							<option value={3}>Low</option>
+							<option value={2}>Med</option>
+							<option value={1}>High</option>
 						</select>
 					</div>
 					<div className='card-footer'>
 						<button
 							className='btn btn-primary'
 							onClick={() => handleEdit(index, 'edit', false)}
+							data-testid='update-todo'
 						>
 							Save
 						</button>
@@ -61,36 +65,42 @@ function TodoItem({
 							Cancel
 						</button>
 					</div>
-				</>
+				</div>
 			) : (
-				<>
-					<TextFormatter title={item.job} desc={item.desc} />
+				// if edit key = false
+				<div data-testid='todo-item'>
+					<TextFormatter title={item.job} desc={item.desc} pri={item.pri} />
 					<div className='card-footer row-col-2'>
 						<button
 							className='btn btn-success'
 							name='complete'
 							type='button'
-							onClick={handleComplete}
+							onClick={() => {
+								handleComplete(index);
+								handleShow();
+							}}
 							value={index}
 						>
-							Completed!
+							<i className='bi bi-check-lg'></i>
 						</button>
 						<button
-							onClick={() => handleDelete(index)}
+							onClick={() => handleDelete(index, item.pri)}
 							value={index}
-							className='btn btn-danger ms-2'
+							className='btn btn-danger float-end ms-2'
+							data-testid='delete-todo'
 						>
-							Delete
+							<i className='bi bi-trash3-fill'></i>
 						</button>
 						<button
 							onClick={() => handleEdit(index, 'edit', true)}
 							value={index}
 							className='btn btn-secondary float-end'
+							data-testid='edit-todo'
 						>
-							Edit
+							<i className='bi bi-pencil-fill'></i>
 						</button>
 					</div>
-				</>
+				</div>
 			)}
 		</div>
 	);
@@ -107,6 +117,7 @@ TodoItem.propTypes = {
 	index: PropTypes.number.isRequired,
 	handleDelete: PropTypes.func.isRequired,
 	handleComplete: PropTypes.func.isRequired,
+	handleShow: PropTypes.func.isRequired,
 	handleEdit: PropTypes.func,
 	handleCancel: PropTypes.func,
 };

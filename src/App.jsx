@@ -8,7 +8,7 @@ import TodoList from './components/TodoList';
 const initialItem = {
 	job: '',
 	desc: '',
-	pri: '1',
+	pri: '3',
 	edit: false,
 };
 
@@ -19,6 +19,7 @@ function App() {
 	const [savedEdit, setSavedEdit] = useState({});
 	const [titleCount, setTitleCount] = useState(0);
 	const [descCount, setDescCount] = useState(0);
+	const [show, setShow] = useState(false);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -31,6 +32,7 @@ function App() {
 			return;
 		}
 		setTodoList((prevList) => [...prevList, listItem]);
+
 		setListItem(initialItem);
 		setTitleCount(0);
 		setDescCount(0);
@@ -43,10 +45,19 @@ function App() {
 		setComplete((prevList) => [...prevList, complete]);
 	};
 
-	const handleDelete = (index) => {
-		const updatedList = [...todoList];
-		updatedList.splice(index, 1);
-		setTodoList(updatedList);
+	const handleDelete = (index, pri) => {
+		if (pri < 4) {
+			const updatedList = [...todoList];
+			updatedList.splice(index, 1);
+			setTodoList(updatedList);
+		} else {
+			const updatedCompleteList = [...complete];
+			updatedCompleteList.splice(index, 1);
+			setComplete(updatedCompleteList);
+			if (complete.length === 1) {
+				setShow(false);
+			}
+		}
 	};
 
 	const handleEdit = (index, key, value) => {
@@ -80,33 +91,43 @@ function App() {
 		setDescCount(inputLength);
 	}
 
+	function handleShow() {
+		if (show === false) {
+			setShow(true);
+		}
+	}
+
 	return (
-		<div className='container'>
-			<Header />
-			<div className='row'>
-				<div className='col'>
-					<TodoForm
-						listItem={listItem}
-						handleChange={handleChange}
-						handleAdd={handleAdd}
-						handleTitleCounter={handleTitleCounter}
-						titleCount={titleCount}
-						handleDescCounter={handleDescCounter}
-						descCount={descCount}
-					/>
-				</div>
-				<div className='col'>
-					<TodoList
-						todos={todoList}
-						complete={complete}
-						handleDelete={handleDelete}
-						handleComplete={handleComplete}
-						handleEdit={handleEdit}
-						handleCancel={handleCancel}
-					/>
+		<>
+			<div className='container'>
+				<Header />
+				<div className='row'>
+					<div className='col'>
+						<TodoForm
+							listItem={listItem}
+							handleChange={handleChange}
+							handleAdd={handleAdd}
+							handleTitleCounter={handleTitleCounter}
+							titleCount={titleCount}
+							handleDescCounter={handleDescCounter}
+							descCount={descCount}
+						/>
+					</div>
+					<div className='col'>
+						<TodoList
+							todos={todoList}
+							complete={complete}
+							handleDelete={handleDelete}
+							handleComplete={handleComplete}
+							handleEdit={handleEdit}
+							handleCancel={handleCancel}
+							handleShow={handleShow}
+							show={show}
+						/>
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 

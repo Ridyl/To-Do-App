@@ -42,6 +42,7 @@ function TodoForm({
 							maxLength={512}
 							className='form-control'
 							id='description'
+							data-testid='create-todo-text'
 						/>
 						<p className='badge text-bg-secondary'>{descCount} / 512</p>
 						<label htmlFor='desc'>Description:</label>
@@ -54,16 +55,28 @@ function TodoForm({
 							name='pri'
 							onChange={handleChange}
 							className='form-select'
+							data-testid='create-todo-priority'
 						>
-							<option value={1}>Low</option>
-							<option value={2}>Med</option>
-							<option value={3}>High</option>
+							<option value={1} className='high'>
+								High
+							</option>
+							<option value={2} className='medium'>
+								Med
+							</option>
+							<option value={3} className='low'>
+								Low
+							</option>
 						</select>
 						<label htmlFor='pri'>Priority:</label>
 					</div>
 				</div>
 				<div className=''>
-					<button className='btn btn-primary' type='button' onClick={handleAdd}>
+					<button
+						className='btn btn-primary'
+						type='button'
+						onClick={handleAdd}
+						data-testid='create-todo'
+					>
 						Add to List
 					</button>
 				</div>

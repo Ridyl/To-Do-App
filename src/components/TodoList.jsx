@@ -9,6 +9,8 @@ function TodoList({
 	handleComplete,
 	handleEdit,
 	handleCancel,
+	handleShow,
+	show,
 }) {
 	return (
 		<>
@@ -21,12 +23,46 @@ function TodoList({
 					handleComplete={handleComplete}
 					handleEdit={handleEdit}
 					handleCancel={handleCancel}
+					handleShow={handleShow}
 				/>
 			))}
-
-			{complete.map((item, i) => (
-				<CompleteItem key={i} item={item} index={i} />
-			))}
+			{show ? (
+				<div className='accordion' id='complete-accordion'>
+					<div className='accordion-item'>
+						<h2 className='accordion-header'>
+							<button
+								className='accordion-button collapsed'
+								type='button'
+								id='accordion-button'
+								data-bs-toggle='collapse'
+								data-bs-target='#accordion-item'
+								aria-controls='accordian-item'
+								aria-expanded='true'
+							>
+								Completed To-Do List!
+							</button>
+						</h2>
+						<div
+							className='accordion-collapse collapse'
+							id='accordion-item'
+							data-bs-parent='#complete-accordion'
+						>
+							<div className='accordion-body'>
+								{complete.map((item, i) => (
+									<CompleteItem
+										key={i}
+										item={item}
+										index={i}
+										handleDelete={handleDelete}
+									/>
+								))}
+							</div>
+						</div>
+					</div>
+				</div>
+			) : (
+				<></>
+			)}
 		</>
 	);
 }
@@ -51,8 +87,10 @@ TodoList.propTypes = {
 	).isRequired,
 	handleDelete: PropTypes.func.isRequired,
 	handleComplete: PropTypes.func.isRequired,
+	handleShow: PropTypes.func.isRequired,
 	handleEdit: PropTypes.func.isRequired,
 	handleCancel: PropTypes.func.isRequired,
+	show: PropTypes.bool.isRequired,
 };
 
 export default TodoList;

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function TextFormatter({ title, desc }) {
+function TextFormatter({ title, desc, pri }) {
 	// formats title to start each word with capital letter
 	const formatTitle = (title) => {
 		const noCap = ['a', 'an', 'the', 'and', 'or', 'but', 'nor'];
@@ -54,21 +54,57 @@ function TextFormatter({ title, desc }) {
 		);
 	}
 
-	return (
-		<div>
-			<div className='card-header'>
-				<h5>{formatTitle(title)}</h5>
-			</div>
-			<div className='card-body'>
-				<p className='card-text'>{formatDesc(desc)}</p>
-			</div>
-		</div>
-	);
+	return (() => {
+		if (pri === '3') {
+			return (
+				<>
+					<div className='card-header text-bg-light'>{formatTitle(title)}</div>
+					<div className='card-body'>
+						<p className='card-text'>{formatDesc(desc)}</p>
+					</div>
+				</>
+			);
+		} else if (pri === '2') {
+			return (
+				<>
+					<div className='card-header text-bg-warning'>
+						{formatTitle(title)}
+					</div>
+					<div className='card-body'>
+						<p className='card-text'>{formatDesc(desc)}</p>
+					</div>
+				</>
+			);
+		} else if (pri === '1') {
+			return (
+				<>
+					<div className='card-header text-bg-danger'>{formatTitle(title)}</div>
+					<div className='card-body'>
+						<p className='card-text' data-testid='todo-item'>
+							{formatDesc(desc)}
+						</p>
+					</div>
+				</>
+			);
+		} else {
+			return (
+				<>
+					<div className='card-header text-bg-success'>
+						{formatTitle(title)}
+					</div>
+					<div className='card-body'>
+						<p className='card-text'>{formatDesc(desc)}</p>
+					</div>
+				</>
+			);
+		}
+	})();
 }
 
 TextFormatter.propTypes = {
 	title: PropTypes.string.isRequired,
 	desc: PropTypes.string,
+	pri: PropTypes.string,
 };
 
 export default TextFormatter;
