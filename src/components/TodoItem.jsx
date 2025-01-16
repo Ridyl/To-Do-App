@@ -11,10 +11,10 @@ function TodoItem({
 	handleShow,
 }) {
 	return (
-		<div className='card' data-testid='todo-item'>
+		<div className='card'>
 			{/* If edit key = true */}
 			{item.edit ? (
-				<div data-testid='todo-item'>
+				<div>
 					<div className='card-header'>
 						<div className='form-floating'>
 							<input
@@ -68,12 +68,10 @@ function TodoItem({
 				</div>
 			) : (
 				// if edit key = false
-				<div data-testid='todo-item'>
+				<div>
 					<TextFormatter title={item.job} desc={item.desc} pri={item.pri} />
-					{/* <div data-testid='todo-item'>
-						<p className='card-header text-bg-light' data-testid='todo-item'>
-							{item.job}
-						</p>
+					{/* <div>
+						<p className='card-header text-bg-light'>{item.job}</p>
 						<div className='card-body'>
 							<p className='card-text' data-testid='todo-item'>
 								{item.desc}

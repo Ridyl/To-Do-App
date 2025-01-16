@@ -14,7 +14,7 @@ function TodoList({
 }) {
 	return (
 		<>
-			<div data-testid='todo-item'>
+			<div>
 				{todos.map((item, i) => (
 					<TodoItem
 						key={i}

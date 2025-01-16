@@ -57,12 +57,10 @@ function TextFormatter({ title, desc, pri }) {
 	return (() => {
 		if (pri === '3') {
 			return (
-				<div data-testid='todo-item'>
-					<p className='card-header text-bg-light' data-testid='todo-item'>
-						{formatTitle(title)}
-					</p>
+				<div>
+					<p className='card-header text-bg-light'>{formatTitle(title)}</p>
 					<div className='card-body'>
-						<p className='card-text' data-testid='todo-item'>
+						<p className='card-text priority-low' data-testid='todo-item'>
 							{formatDesc(desc)}
 						</p>
 					</div>
@@ -70,12 +68,10 @@ function TextFormatter({ title, desc, pri }) {
 			);
 		} else if (pri === '2') {
 			return (
-				<div data-testid='todo-item'>
-					<p className='card-header text-bg-warning' data-testid='todo-item'>
-						{formatTitle(title)}
-					</p>
+				<div>
+					<p className='card-header text-bg-warning '>{formatTitle(title)}</p>
 					<div className='card-body'>
-						<p className='card-text' data-testid='todo-item'>
+						<p className='card-text priority-medium' data-testid='todo-item'>
 							{formatDesc(desc)}
 						</p>
 					</div>
@@ -83,12 +79,10 @@ function TextFormatter({ title, desc, pri }) {
 			);
 		} else if (pri === '1') {
 			return (
-				<div data-testid='todo-item'>
-					<p className='card-header text-bg-danger' data-testid='todo-item'>
-						{formatTitle(title)}
-					</p>
+				<div>
+					<p className='card-header text-bg-danger'>{formatTitle(title)}</p>
 					<div className='card-body'>
-						<p className='card-text' data-testid='todo-item'>
+						<p className='card-text priority-high' data-testid='todo-item'>
 							{formatDesc(desc)}
 						</p>
 					</div>
@@ -96,10 +90,8 @@ function TextFormatter({ title, desc, pri }) {
 			);
 		} else {
 			return (
-				<div data-testid='todo-item'>
-					<p className='card-header text-bg-success' data-testid='todo-item'>
-						{formatTitle(title)}
-					</p>
+				<div>
+					<p className='card-header text-bg-success'>{formatTitle(title)}</p>
 					<div className='card-body'>
 						<p className='card-text' data-testid='todo-item'>
 							{formatDesc(desc)}
