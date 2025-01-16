@@ -20,6 +20,7 @@ function App() {
 	const [titleCount, setTitleCount] = useState(0);
 	const [descCount, setDescCount] = useState(0);
 	const [show, setShow] = useState(false);
+	const [darkMode, setDarkMode] = useState(true);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -97,10 +98,17 @@ function App() {
 		}
 	}
 
+	const handleDarkMode = () => {
+		setDarkMode(!darkMode);
+		const htmlElement = document.querySelector('html');
+		htmlElement.setAttribute('data-bs-theme', darkMode ? 'dark' : 'light');
+		console.log('works');
+	};
+
 	return (
 		<>
 			<div className='container'>
-				<Header />
+				<Header handleDarkMode={handleDarkMode} />
 				<div className='row'>
 					<div className='col'>
 						<TodoForm

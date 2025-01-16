@@ -12,7 +12,7 @@ function TodoForm({
 	return (
 		<div className='card'>
 			<h5 className='card-header'>Create Your To-Do Item!</h5>
-			<form className='add-todo' id='form-card'>
+			<form id='form-card'>
 				<div className='mb-3'>
 					<div className='form-floating'>
 						<input
@@ -57,13 +57,13 @@ function TodoForm({
 							className='form-select'
 							data-testid='create-todo-priority'
 						>
-							<option value={1} className='high'>
+							<option value={'1'} className='priority-high'>
 								High
 							</option>
-							<option value={2} className='medium'>
+							<option value={'2'} className='priority-medium'>
 								Med
 							</option>
-							<option value={3} className='low'>
+							<option value={'3'} className='priority-low'>
 								Low
 							</option>
 						</select>

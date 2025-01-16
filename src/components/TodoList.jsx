@@ -14,18 +14,20 @@ function TodoList({
 }) {
 	return (
 		<>
-			{todos.map((item, i) => (
-				<TodoItem
-					key={i}
-					item={item}
-					index={i}
-					handleDelete={handleDelete}
-					handleComplete={handleComplete}
-					handleEdit={handleEdit}
-					handleCancel={handleCancel}
-					handleShow={handleShow}
-				/>
-			))}
+			<div data-testid='todo-item'>
+				{todos.map((item, i) => (
+					<TodoItem
+						key={i}
+						item={item}
+						index={i}
+						handleDelete={handleDelete}
+						handleComplete={handleComplete}
+						handleEdit={handleEdit}
+						handleCancel={handleCancel}
+						handleShow={handleShow}
+					/>
+				))}
+			</div>
 			{show ? (
 				<div className='accordion' id='complete-accordion'>
 					<div className='accordion-item'>

@@ -45,9 +45,9 @@ function TodoItem({
 							value={item.pri}
 							onChange={(e) => handleEdit(index, 'pri', e.target.value)}
 						>
-							<option value={3}>Low</option>
-							<option value={2}>Med</option>
-							<option value={1}>High</option>
+							<option value={'3'}>Low</option>
+							<option value={'2'}>Med</option>
+							<option value={'1'}>High</option>
 						</select>
 					</div>
 					<div className='card-footer'>
@@ -80,6 +80,7 @@ function TodoItem({
 								handleShow();
 							}}
 							value={index}
+							data-testid='create-todo'
 						>
 							<i className='bi bi-check-lg'></i>
 						</button>
