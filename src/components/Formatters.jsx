@@ -58,7 +58,9 @@ function TextFormatter({ title, desc, pri }) {
 		if (pri === '3') {
 			return (
 				<div data-testid='todo-item'>
-					<div className='card-header text-bg-light'>{formatTitle(title)}</div>
+					<p className='card-header text-bg-light' data-testid='todo-item'>
+						{formatTitle(title)}
+					</p>
 					<div className='card-body'>
 						<p className='card-text' data-testid='todo-item'>
 							{formatDesc(desc)}
@@ -69,9 +71,9 @@ function TextFormatter({ title, desc, pri }) {
 		} else if (pri === '2') {
 			return (
 				<div data-testid='todo-item'>
-					<div className='card-header text-bg-warning'>
+					<p className='card-header text-bg-warning' data-testid='todo-item'>
 						{formatTitle(title)}
-					</div>
+					</p>
 					<div className='card-body'>
 						<p className='card-text' data-testid='todo-item'>
 							{formatDesc(desc)}
@@ -82,7 +84,9 @@ function TextFormatter({ title, desc, pri }) {
 		} else if (pri === '1') {
 			return (
 				<div data-testid='todo-item'>
-					<div className='card-header text-bg-danger'>{formatTitle(title)}</div>
+					<p className='card-header text-bg-danger' data-testid='todo-item'>
+						{formatTitle(title)}
+					</p>
 					<div className='card-body'>
 						<p className='card-text' data-testid='todo-item'>
 							{formatDesc(desc)}
@@ -93,9 +97,9 @@ function TextFormatter({ title, desc, pri }) {
 		} else {
 			return (
 				<div data-testid='todo-item'>
-					<div className='card-header text-bg-success'>
+					<p className='card-header text-bg-success' data-testid='todo-item'>
 						{formatTitle(title)}
-					</div>
+					</p>
 					<div className='card-body'>
 						<p className='card-text' data-testid='todo-item'>
 							{formatDesc(desc)}

@@ -70,6 +70,16 @@ function TodoItem({
 				// if edit key = false
 				<div data-testid='todo-item'>
 					<TextFormatter title={item.job} desc={item.desc} pri={item.pri} />
+					{/* <div data-testid='todo-item'>
+						<p className='card-header text-bg-light' data-testid='todo-item'>
+							{item.job}
+						</p>
+						<div className='card-body'>
+							<p className='card-text' data-testid='todo-item'>
+								{item.desc}
+							</p>
+						</div>
+					</div> */}
 					<div className='card-footer row-col-2'>
 						<button
 							className='btn btn-success'

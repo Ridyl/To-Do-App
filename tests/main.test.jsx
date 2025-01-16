@@ -60,7 +60,7 @@ describe('Very Simple To Do App', () => {
         await waitFor(() => {
             const todoItem = screen.getAllByTestId('todo-item')[0];
             expect(todoItem).toBeInTheDocument();
-            expect(todoItem).toHaveTextContent('NEW TODO');
+            expect(todoItem).toHaveTextContent('NEW TODO HIGH');
         });
     });
     

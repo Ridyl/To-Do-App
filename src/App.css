@@ -1,3 +1,10 @@
+.header-group {
+	border-bottom: solid 2px #0a58ca;
+	margin-bottom: 25px;
+	padding-bottom: 7px;
+	flex-direction: row;
+}
+
 #form-card {
 	padding: 7px 5px 7px 5px;
 }
